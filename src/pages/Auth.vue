@@ -7,43 +7,38 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
 import axios from "axios";
 import { useAuthStore } from "../stores/auth.js";
+import { useRouter } from "vue-router";
 
-export default {
-  name: "Auth",
-  data() {
-    return {
-      login: "",
-      password: "",
-      error: "",
-    };
-  },
-  computed: {
-    authStore() {
-      return useAuthStore();
+const login = ref("");
+const password = ref("");
+const error = ref("");
+const router = useRouter();
+// Store
+const authStore = useAuthStore();
+
+// Methods
+const submit = () => {
+  axios({
+    method: "post",
+    url: "/api/login",
+    data: {
+      username: login.value,
+      password: password.value,
     },
-  },
-  methods: {
-    submit() {
-      axios({
-        method: "post",
-        url: "/api/login",
-        data: {
-          username: this.login,
-          password: this.password,
-        },
-      })
-        .then((response) => {
-          this.authStore.wsToken = response.data.token;
-          this.error = "";
-        })
-        .catch((error) => {
-          this.error = error.response.data.message;
-        });
-    },
-  },
+  })
+    .then((response) => {
+      authStore.wsToken = response.data.token;
+      localStorage.setItem("ws-token", response.data.token);
+      error.value = "";
+      router.push("direct");
+    })
+    .catch((err) => {
+      error.value = err.response?.data?.message || "An error occurred";
+    });
 };
 </script>
 
