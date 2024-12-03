@@ -33,6 +33,7 @@ const submit = () => {
     .then((response) => {
       authStore.wsToken = response.data.token;
       localStorage.setItem("ws-token", response.data.token);
+      localStorage.setItem("username", response.data.username);
       error.value = "";
       router.push("direct");
     })

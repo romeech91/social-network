@@ -14,10 +14,16 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+  userName: {
+    type: String,
+    required: true,
+  },
 });
 
 const messageType = computed(() => {
-  return props.item.user === "You" ? "message--my" : "message--remote";
+  return props.item.sender === props.userName
+    ? "message--my"
+    : "message--remote";
 });
 </script>
 

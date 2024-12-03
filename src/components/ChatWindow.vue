@@ -1,19 +1,23 @@
 <template>
   <div class="chat-window">
-    <template v-for="message in messages">
-      <ChatMessage :item="message" />
+    <template v-for="message in props.messages">
+      <chat-message :item="message" :user-name="userName" />
     </template>
   </div>
 </template>
 
 <script setup>
 import ChatMessage from "@/components/elements/ChatMessage.vue";
-import { defineProps } from "vue";
+import { defineProps, ref } from "vue";
 
-defineProps({
+const props = defineProps({
   messages: {
     type: Array,
     default: () => [],
+  },
+  userName: {
+    type: String,
+    required: true,
   },
 });
 </script>
@@ -27,5 +31,6 @@ defineProps({
   gap: 12px;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 </style>
