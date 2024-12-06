@@ -1,14 +1,14 @@
 <template>
   <div class="chat-window">
-    <template v-for="message in props.messages">
+    <template v-for="message in props.messages" :key="message.id">
       <chat-message :item="message" :user-name="userName" />
     </template>
   </div>
 </template>
 
-<script setup>
-import ChatMessage from "@/components/elements/ChatMessage.vue";
-import { defineProps, ref } from "vue";
+<script lang="ts" setup>
+import ChatMessage from "./elements/ChatMessage.vue";
+import { defineProps } from "vue";
 
 const props = defineProps({
   messages: {

@@ -7,10 +7,10 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from "vue";
 import axios from "axios";
-import { useAuthStore } from "../stores/auth.js";
+import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "vue-router";
 
 const login = ref("");
@@ -33,9 +33,9 @@ const submit = () => {
     .then((response) => {
       authStore.wsToken = response.data.token;
       localStorage.setItem("ws-token", response.data.token);
-      localStorage.setItem("username", response.data.username);
+      localStorage.setItem("userId", response.data.userId);
       error.value = "";
-      router.push("direct");
+      router.push("direct-list");
     })
     .catch((err) => {
       error.value = err.response?.data?.message || "An error occurred";

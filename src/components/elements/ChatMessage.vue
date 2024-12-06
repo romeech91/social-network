@@ -1,11 +1,10 @@
 <template>
   <div class="message" :class="messageType">
-    <!-- <span class="message-user">{{ item.user }}</span> -->
     <span class="message-text">{{ item.message }}</span>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { defineProps } from "vue";
 import { computed } from "vue";
 

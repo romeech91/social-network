@@ -18,6 +18,7 @@ module.exports = defineConfig({
   },
   configureWebpack: (config) => {
     config.resolve = {
+      extensions: [".ts", ".js", ".vue", ".json"],
       alias: {
         "@": path.resolve(__dirname, "src"),
       },

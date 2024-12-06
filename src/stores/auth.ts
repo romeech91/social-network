@@ -6,7 +6,7 @@ export const useAuthStore = defineStore("auth", {
     getWsToken: (state) => state.wsToken,
   },
   actions: {
-    setWsToken(value) {
+    setWsToken(value: string) {
       this.wsToken = value;
     },
   },

@@ -7,10 +7,10 @@
   </button>
 </template>
 
-<script setup>
-import { ref, onMounted, onBeforeUnmount, computed } from "vue";
-import { defineProps, defineEmits } from "vue";
-import icons from "@/assets/svg-icons.js";
+<script setup lang="ts">
+import { computed } from "vue";
+import { defineProps } from "vue";
+import icons from "@/assets/svg-icons";
 
 const props = defineProps({
   iconName: {

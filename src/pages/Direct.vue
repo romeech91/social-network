@@ -12,35 +12,45 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+//components
 import ChatWindow from "@/components/ChatWindow.vue";
 import VueInput from "@/components/base/VueInput.vue";
 import VueButton from "@/components/base/VueButton.vue";
-import { ref, onMounted, onBeforeUnmount, computed } from "vue";
+//vue
+import { ref, Ref, onMounted, onBeforeUnmount } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from "@/stores/auth.js";
+//stores
+import { useAuthStore } from "@/stores/auth";
+//libs
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+//ts
+import { User } from "@/globalTypes/User";
 
-document.addEventListener("keypress", function (e) {
+const router = useRouter();
+const authStore = useAuthStore();
+const message = ref("");
+const wsToken = ref("");
+const socket = ref<WebSocket | null>(null);
+const messages: Ref<string[]> = ref([]);
+
+let userName = ref("");
+
+const sendMessageFn = function (e) {
   if (e.key === "Enter") {
     sendMessage();
   }
-});
+};
+
+document.addEventListener("keypress", sendMessageFn);
 
 onBeforeUnmount(() => {
-  document.removeEventListener("keypress");
+  document.removeEventListener("keypress", sendMessageFn);
 });
-// State
-const message = ref("");
-const wsToken = ref("");
-const socket = ref(null);
-let messages = ref([]);
-// Dependencies
-const authStore = useAuthStore();
-const router = useRouter();
-let userName = ref("");
-userName = localStorage.getItem("username");
-// WebSocket connection
+
+userName.value = localStorage.getItem("username") ?? "";
+
 const connect = () => {
   socket.value = new WebSocket("ws://localhost:7777", wsToken.value);
 
@@ -51,6 +61,7 @@ const connect = () => {
   socket.value.onmessage = (event) => {
     try {
       const message = JSON.parse(event.data);
+      console.log(message);
       messages.value.push(message);
     } catch (error) {
       console.error("Ошибка при парсинге сообщения:", error);
@@ -70,35 +81,29 @@ const getMessages = () => {
       },
     })
     .then((response) => {
-      let sorted = response.data.messages.sort(function (a, b) {
+      let sorted = response.data.messages.sort(function (a: User, b: User) {
         return a.id - b.id;
       });
       messages.value = sorted;
     });
 };
 
-// Message sending
 const sendMessage = () => {
   if (!socket.value) return;
-  let lastId =
-    messages.value.reduce((acc, message) => {
-      return message.id > acc ? message.id : acc;
-    }, 0) + 1;
 
-  let messageObj = {
-    sender: userName,
+  let messageObj: any = {
+    sender: userName.value,
     message: message.value,
     timestamp: Date.now(),
-    id: lastId,
+    id: uuidv4(),
   };
 
   socket.value.send(JSON.stringify(messageObj));
   messages.value.push(messageObj);
-  console.log(messages);
+
   message.value = "";
 };
 
-// Lifecycle hooks
 onMounted(() => {
   wsToken.value = localStorage.getItem("ws-token") ?? authStore.wsToken;
 

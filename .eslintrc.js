@@ -1,11 +1,18 @@
 module.exports = {
-  parser: "vue-eslint-parser",
-  parserOptions: {
-    parser: "@babel/eslint-parser",
-    ecmaVersion: 2020,
-    sourceType: "module",
+  env: {
+    browser: true,
+    es2021: true,
   },
+  extends: "plugin:vue/vue3-essential",
+  overrides: [],
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    parser: "@typescript-eslint/parser",
+  },
+  plugins: ["vue", "@typescript-eslint"],
   rules: {
     "vue/multi-word-component-names": "off",
+    quotes: ["off"],
   },
 };

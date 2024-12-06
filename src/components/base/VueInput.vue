@@ -8,19 +8,17 @@
   />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { defineProps, defineEmits } from "vue";
 
-// Получаем проп modelValue и его обновление через emit
-const props = defineProps({
+defineProps({
   modelValue: String,
 });
 
 const emit = defineEmits(["update:modelValue"]);
 
-// Обрабатываем изменение в input
 const onInput = (event) => {
-  emit("update:modelValue", event.target.value); // Обновляем modelValue через emit
+  emit("update:modelValue", event.target.value);
 };
 </script>
 
