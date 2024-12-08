@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 
 import HomeView from "../pages/Main.vue";
 import Auth from "../pages/Auth.vue";
-import Direct from "../pages/Direct.vue";
+import Chat from "../pages/Chat.vue";
 import ChatList from "../pages/ChatList.vue";
 
 const routes = [
@@ -16,9 +16,13 @@ const routes = [
     component: Auth,
   },
   {
-    path: "/direct",
-    name: "direct",
-    component: Direct,
+    path: "/chat/:personId",
+    name: "chat",
+    params: {
+      personId: Number,
+    },
+    props: true,
+    component: Chat,
   },
   {
     path: "/chat-list",

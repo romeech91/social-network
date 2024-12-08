@@ -1,22 +1,24 @@
 <template>
-  <div class="conversation-item">
-    <div class="conversation-item__main">
-      <avatar size="big" />
-      <div class="conversation-item__content">
-        <span class="conversation-item__name">{{ item.personName }}</span>
-        <span class="conversation-item__message">{{ item.lastMessage }}</span>
+  <router-link :to="{ name: 'chat', params: { personId: item.personId } }">
+    <div class="conversation-item">
+      <div class="conversation-item__main">
+        <avatar size="big" />
+        <div class="conversation-item__content">
+          <span class="conversation-item__name">{{ item.personName }}</span>
+          <span class="conversation-item__message">{{ item.lastMessage }}</span>
+        </div>
+      </div>
+      <div class="conversation-item__info">
+        <span class="conversation-item__time">2 min ago</span>
+        <span class="conversation-item__counter">3</span>
       </div>
     </div>
-    <div class="conversation-item__info">
-      <span class="conversation-item__time">2 min ago</span>
-      <span class="conversation-item__counter">3</span>
-    </div>
-  </div>
+  </router-link>
 </template>
 
 <script lang="js" setup>
 //components
-import Avatar from "@/components/shared/Avatar.vue";
+import Avatar from "@/ui/Avatar.vue";
 //ts
 import { defineProps } from "vue";
 

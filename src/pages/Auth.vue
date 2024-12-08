@@ -31,11 +31,11 @@ const submit = () => {
     },
   })
     .then((response) => {
-      authStore.wsToken = response.data.token;
-      localStorage.setItem("ws-token", response.data.token);
+      authStore.token = response.data.token;
+      localStorage.setItem("token", response.data.token);
       localStorage.setItem("userId", response.data.userId);
       error.value = "";
-      router.push("direct-list");
+      router.push("chat-list");
     })
     .catch((err) => {
       error.value = err.response?.data?.message || "An error occurred";
