@@ -1,8 +1,16 @@
 <template>
-  <button class="vue-button">
-    <span v-if="iconName" class="icon" v-html="svgIcon"></span>
+  <button
+    :disabled="props.disabled"
+    class="vue-button"
+    :class="{ 'vue-button--disabled': props.disabled }"
+  >
+    <span
+      v-if="iconName"
+      class="icon"
+      v-html="svgIcon"
+    />
     <template v-else>
-      <slot></slot>
+      <slot />
     </template>
   </button>
 </template>
@@ -17,6 +25,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const svgIcon = computed(() => {
@@ -26,13 +38,22 @@ const svgIcon = computed(() => {
 
 <style lang="less">
 .vue-button {
-  background-color: #2aafeb;
+  background-color: var(--grey);
   border: none;
-  height: 56px;
-  width: 63px;
-  border-radius: 8px;
+  height: 48px;
+  width: 100%;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--white);
+  font-weight: 600;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &--disabled {
+    background-color: var(--lightgrey);
+    color: var(--midgrey);
+  }
 }
 </style>

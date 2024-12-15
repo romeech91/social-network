@@ -1,5 +1,8 @@
 <template>
-  <div class="message" :class="messageType">
+  <div
+    class="message"
+    :class="messageType"
+  >
     <span class="message-text">{{ item.message }}</span>
   </div>
 </template>

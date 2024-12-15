@@ -1,6 +1,12 @@
 <template>
-  <div class="avatar" :class="`avatar--${size}`">
-    <img class="avatar__img" :src="avatarPath" />
+  <div
+    class="avatar"
+    :class="`avatar--${size}`"
+  >
+    <img
+      class="avatar__img"
+      :src="avatarPath"
+    >
   </div>
 </template>
 
@@ -16,7 +22,7 @@ defineProps({
   },
 });
 
-let avatarPath = ref("");
+const avatarPath = ref("");
 
 avatarPath.value = require("@/assets/avatar.jpg");
 </script>

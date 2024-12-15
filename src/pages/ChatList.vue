@@ -1,5 +1,5 @@
 <template>
-  <conversations></conversations>
+  <conversations />
 </template>
 
 <script lang="ts" setup>

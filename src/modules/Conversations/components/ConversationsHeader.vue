@@ -1,7 +1,7 @@
 <template>
   <div class="conversations-header">
     <div class="conversations-header__search">
-      <span v-html="searchIcon"></span>
+      <span v-html="searchIcon" />
     </div>
     <span class="conversations-header__title">Conversations</span>
     <avatar />

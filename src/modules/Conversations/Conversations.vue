@@ -1,12 +1,12 @@
 <template>
   <div class="conversations">
-    <conversations-header></conversations-header>
+    <conversations-header />
     <div class="conversations__items">
       <conversation-item
         v-for="item in conversations"
         :key="item.id"
         :item="item"
-      ></conversation-item>
+      />
     </div>
   </div>
 </template>

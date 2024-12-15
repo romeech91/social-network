@@ -1,5 +1,5 @@
 <template>
-  <conversation-chat></conversation-chat>
+  <conversation-chat />
 </template>
 
 <script lang="ts" setup>

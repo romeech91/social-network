@@ -1,7 +1,13 @@
 <template>
   <div class="chat-window">
-    <template v-for="message in props.messages" :key="message.id">
-      <chat-message :item="message" :user-name="userName" />
+    <template
+      v-for="message in props.messages"
+      :key="message.id"
+    >
+      <chat-message
+        :item="message"
+        :user-name="userName"
+      />
     </template>
   </div>
 </template>

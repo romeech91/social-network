@@ -1,13 +1,21 @@
 <template>
   <div class="chat">
-    <chat-window :messages="messages" :user-name="userName" />
+    <chat-window
+      :messages="messages"
+      :user-name="userName"
+    />
     <div class="chat__control">
       <vue-input
-        class="chat__input"
         v-model="message"
+        class="chat__input"
         @update:model-value="message = $event"
       />
-      <vue-button @click="sendMessage" icon-name="letter">Send</vue-button>
+      <vue-button
+        icon-name="letter"
+        @click="sendMessage"
+      >
+        Send
+      </vue-button>
     </div>
   </div>
 </template>
@@ -25,8 +33,6 @@ import { useAuthStore } from "@/stores/auth";
 //libs
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-//ts
-import { User } from "./types/User";
 
 const props = defineProps({
   personId: {
@@ -35,12 +41,19 @@ const props = defineProps({
   },
 });
 
+type MessageItem = {
+  sender: string;
+  message: string;
+  timestamp: string | number;
+  id: string | number;
+};
+
 const router = useRouter();
 const authStore = useAuthStore();
 const message = ref("");
 const token = ref("");
 const socket = ref<WebSocket | null>(null);
-const messages: Ref<string[]> = ref([]);
+const messages: Ref<MessageItem[]> = ref([]);
 
 let userName = ref("");
 const userId = localStorage.getItem("userId");
@@ -105,12 +118,12 @@ const getMessages = async () => {
 const sendMessage = () => {
   if (!socket.value) return;
 
-  let messageObj: any = {
+  let messageObj = {
     sender: userName.value,
     message: message.value,
     timestamp: Date.now(),
     id: uuidv4(),
-  };
+  } as MessageItem;
 
   socket.value.send(JSON.stringify(messageObj));
   messages.value.push(messageObj);
