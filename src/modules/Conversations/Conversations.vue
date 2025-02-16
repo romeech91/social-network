@@ -1,6 +1,6 @@
 <template>
   <div class="conversations">
-    <conversations-header />
+    <top-panel />
     <div class="conversations__items">
       <conversation-item
         v-for="item in conversations"
@@ -14,34 +14,27 @@
 <script lang="ts" setup>
 //components
 import ConversationItem from "./components/ConversationItem.vue";
-import ConversationsHeader from "./components/ConversationsHeader.vue";
+import TopPanel from "../../components/TopPanel.vue";
 //ts
 import { ConversationModel } from "./types/ConversationModel";
-
 //vue
 import { ref, onMounted } from "vue";
 //libs
 import axios from "axios";
 
 const conversations = ref<ConversationModel[]>([]);
-let userId = ref("");
-
-userId.value = localStorage.getItem("userId") ?? "";
 
 const getConversations = () => {
-  axios
-    .get(`/api/conversations`, {
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
-      params: {
-        userId: userId.value,
-      },
-    })
-    .then((response) => {
-      console.log(response);
-      conversations.value = response.data.conversations;
-    });
+  axios({
+    method: 'get',
+    url: '/api/posts',
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  })
+  .then((response) => {
+    conversations.value = response.data.conversations;
+  });
 };
 onMounted(() => {
   getConversations();

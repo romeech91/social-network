@@ -27,14 +27,12 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 import axios from "axios";
-import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "vue-router";
 //components
 import LoginHeader from "./components/LoginHeader.vue";
 import VueInput from "@/ui/VueInput.vue";
 import VueButton from "@/ui/VueButton.vue";
-// Store
-const authStore = useAuthStore();
+
 
 const login = ref("");
 const password = ref("");
@@ -56,12 +54,9 @@ const submit = () => {
     },
   })
     .then((response) => {
-      authStore.token = response.data.token;
-      localStorage.setItem("token", response.data.token);
-
-      console.log(response);
-      error.value = "";
-      router.push("chat-list");
+      localStorage.setItem('token', response.data.token);
+      error.value = '';
+      router.push('/');
     })
     .catch((err) => {
       error.value = err.response?.data;

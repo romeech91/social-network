@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+// import type {Notification} from "@/globalTypes/index";
 
 type NotificationItem = {
   type: string;
@@ -13,5 +14,11 @@ export const useNotificationsStore = defineStore("notifications", {
     addItem(item: NotificationItem) {
       this.notifications.push(item);
     },
+    deleteItem(item: NotificationItem) {
+      const index = this.notifications.indexOf(item);
+      if (index > -1) {
+        this.notifications.splice(index, 1);
+      }
+    }
   },
 });

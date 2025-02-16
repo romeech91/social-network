@@ -1,21 +1,21 @@
 <template>
-  <div class="conversations-header">
-    <div class="conversations-header__search">
+  <div class="top-panel">
+    <div class="top-panel__search">
       <span v-html="searchIcon" />
     </div>
-    <span class="conversations-header__title">Conversations</span>
+    <span class="top-panel__title">Conversations</span>
     <avatar />
   </div>
 </template>
 
 <script lang="ts" setup>
-//components
 import Avatar from "@/ui/Avatar.vue";
 import { search as searchIcon } from "@/assets/svg-icons";
 </script>
 
 <style lang="less" scoped>
-.conversations-header {
+.top-panel {
+  background-color: #000E08;
   color: #fff;
   padding: 20px;
   display: flex;

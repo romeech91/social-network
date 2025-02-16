@@ -15,5 +15,6 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-require-imports": "off",
     "vue/no-v-html": "off",
+    "@typescript-eslint/no-namespace": "off",
   },
 };

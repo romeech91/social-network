@@ -14,6 +14,10 @@ module.exports = defineConfig({
         target: "http://localhost:5000",
         changeOrigin: true,
       },
+      "/": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+      },
     },
   },
   configureWebpack: (config) => {

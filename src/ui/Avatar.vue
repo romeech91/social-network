@@ -1,7 +1,7 @@
 <template>
   <div
     class="avatar"
-    :class="`avatar--${size}`"
+    :class="`avatar--${props.size}`"
   >
     <img
       class="avatar__img"
@@ -11,20 +11,20 @@
 </template>
 
 <script lang="ts" setup>
-//vue
-import { ref } from "vue";
 import { defineProps } from "vue";
 
-defineProps({
+const props = defineProps({
   size: {
     type: String,
-    default: "medium",
+    default: "big",
+  },
+  path: {
+    type: String,
+    default: '',
   },
 });
 
-const avatarPath = ref("");
-
-avatarPath.value = require("@/assets/avatar.jpg");
+const avatarPath = props.path || require('@/assets/avatar.jpg')
 </script>
 
 <style lang="less" scoped>
@@ -33,7 +33,8 @@ avatarPath.value = require("@/assets/avatar.jpg");
   height: 44px;
   border-radius: 50%;
   overflow: hidden;
-
+  flex-shrink: 0;
+  
   &--big {
     height: 52px;
     width: 52px;
