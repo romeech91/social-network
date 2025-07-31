@@ -8,10 +8,8 @@
 </template>
 
 <script setup lang="ts">
-//vue
 import { defineProps } from "vue";
 import type {Notification} from "@/globalTypes/index";
-//ts
 import { crossMini } from "@/assets/svg-icons";
 
 defineProps<{

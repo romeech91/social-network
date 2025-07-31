@@ -24,7 +24,7 @@ const props = defineProps({
   },
 });
 
-const avatarPath = props.path || require('@/assets/avatar.jpg')
+const avatarPath = props.path ? `${process.env.VUE_APP_STATIC}/${props.path}` : require('@/assets/avatar-default.svg')
 </script>
 
 <style lang="less" scoped>

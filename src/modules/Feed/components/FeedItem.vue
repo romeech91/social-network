@@ -18,17 +18,14 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { Post } from './types'
 import { computed } from "vue";
 import Avatar from "@/ui/Avatar.vue";
 import IconSvg from "@/ui/IconSvg.vue";
 
-const props = defineProps({
-  post: {
-    type: Object,
-    default: () => {},
-  },
-});
+const props = defineProps<{
+  post: Post
+}>()
 
 const post = computed(() => props.post);
 </script>
@@ -44,6 +41,11 @@ const post = computed(() => props.post);
     font-size: 19px;
     font-weight: 700;
   }
+
+  &__main {
+    width: 100%;
+  }
+
   &__text {
     font-size: 19px;
   }
@@ -53,6 +55,7 @@ const post = computed(() => props.post);
     justify-content: space-between;
     max-width: 150px;
     margin-top: 20px;
+    margin-left: auto;
 
     & button {
       border: none;

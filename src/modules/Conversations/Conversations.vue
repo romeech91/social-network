@@ -1,7 +1,7 @@
 <template>
   <div class="conversations">
-    <top-panel />
-    <div class="conversations__items">
+    <top-panel title="Conversations" />
+    <div class="conversations__items rounded-container">
       <conversation-item
         v-for="item in conversations"
         :key="item.id"
@@ -50,7 +50,6 @@ onMounted(() => {
     background: #fff;
     height: calc(100vh - 84px);
     padding: 35px 9px;
-    border-radius: 42px 42px 0 0;
     gap: 7px;
     display: flex;
     flex-direction: column;

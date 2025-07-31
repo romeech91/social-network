@@ -25,6 +25,7 @@
 </template>
 
 <script lang="ts" setup>
+//vue
 import { ref, computed } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
@@ -32,8 +33,10 @@ import { useRouter } from "vue-router";
 import LoginHeader from "./components/LoginHeader.vue";
 import VueInput from "@/ui/VueInput.vue";
 import VueButton from "@/ui/VueButton.vue";
+//store
+import { useUserStore } from "@/stores/user";
 
-
+const userStore = useUserStore();
 const login = ref("");
 const password = ref("");
 const error = ref("");
@@ -43,7 +46,6 @@ const disabledBtn = computed(() => {
   return !login.value.length || !password.value.length;
 });
 
-// Methods
 const submit = () => {
   axios({
     method: "post",
@@ -55,6 +57,8 @@ const submit = () => {
   })
     .then((response) => {
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('uid', response.data.user._id);
+      userStore.setUser(response.data.user);
       error.value = '';
       router.push('/');
     })
@@ -71,6 +75,7 @@ const submit = () => {
   padding: 40px 24px;
   height: 100%;
   justify-content: space-between;
+  background-color: #fff;
 
   &__fields {
     display: flex;
