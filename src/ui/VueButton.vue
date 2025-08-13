@@ -20,19 +20,13 @@ import { computed } from "vue";
 import { defineProps } from "vue";
 import icons from "@/assets/svg-icons";
 
-const props = defineProps({
-  iconName: {
-    type: String,
-    default: "",
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-});
+const props = defineProps<{
+  iconName?: string,
+  disabled?: boolean,
+}>()
 
 const svgIcon = computed(() => {
-  return icons[props.iconName];
+  return icons[props.iconName as keyof typeof icons];
 });
 </script>
 

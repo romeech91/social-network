@@ -17,7 +17,7 @@
     </div>
     <vue-button
       :disabled="disabledBtn"
-      @click="submit"
+      @click="logIn"
     >
       Log in
     </vue-button>
@@ -35,6 +35,10 @@ import VueInput from "@/ui/VueInput.vue";
 import VueButton from "@/ui/VueButton.vue";
 //store
 import { useUserStore } from "@/stores/user";
+//ts
+import { useEnterKey } from "@/composables/useEnterKey";
+
+useEnterKey(logIn);
 
 const userStore = useUserStore();
 const login = ref("");
@@ -46,7 +50,7 @@ const disabledBtn = computed(() => {
   return !login.value.length || !password.value.length;
 });
 
-const submit = () => {
+function logIn() {
   axios({
     method: "post",
     url: "/api/login",
@@ -66,6 +70,8 @@ const submit = () => {
       error.value = err.response?.data;
     });
 };
+
+
 </script>
 
 <style lang="less" scoped>
@@ -73,7 +79,7 @@ const submit = () => {
   display: flex;
   flex-direction: column;
   padding: 40px 24px;
-  height: 100%;
+  height: 100vh;
   justify-content: space-between;
   background-color: #fff;
 

@@ -111,7 +111,7 @@ const getMessages = async () => {
 
     console.log("Детализация переписки:", response.data);
   } catch (error) {
-    console.error("Ошибка получения данных:", error.response?.data || error);
+    console.error("Ошибка получения данных:", error?.response?.data || error);
   }
 };
 

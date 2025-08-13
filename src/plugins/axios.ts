@@ -1,5 +1,6 @@
 import axios from "axios";
-import type { App } from "vue";
+import { App } from "vue";
+import router from "@/router";
 import { useNotificationsStore } from "../stores/notifications";
 
 let notificationsStore: ReturnType<typeof useNotificationsStore> | null = null;
@@ -11,7 +12,6 @@ const apiClient = axios.create({
   },
 });
 
-
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -21,7 +21,7 @@ apiClient.interceptors.response.use(
 
     const status = error.response ? error.response.status : null;
     if (status === 401) {
-      window.location.href = '/login';
+      router.push({ name: 'login' })
     } else if (status === 404) {
       console.log("404 Not Found");
     } else {

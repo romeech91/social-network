@@ -1,31 +1,38 @@
 <template>
   <div class="top-panel">
-    <div
+    <rounded-icon
       class="top-panel__action"
+      :icon-name="controlIcon"
       @click="$emit('click')"
-    >
-      <span v-html="controlIcon" />
-    </div>
+    />
     <span class="top-panel__title">{{ title }}</span>
-    <avatar />
+    <avatar :path="userAvatar" />
   </div>
 </template>
 
 <script lang="ts" setup>
+//vue
 import Avatar from "@/ui/Avatar.vue";
-import { search as searchIcon } from "@/assets/svg-icons";
 import { computed } from "vue";
+//store
+import { useUserStore } from "@/stores/user";
+//components
+import RoundedIcon from "@/ui/RoundedIcon.vue";
 
 defineEmits(['click'])
 
 const props = defineProps<{
-  icon?: string,
-  title: string
+  iconName?: string,
+  title: string,
+  userAvatar?: string
 }>()
 
+const userStore = useUserStore();
+
 const controlIcon = computed(() => {
-  return props.icon?.length ? props.icon : searchIcon
+  return props.iconName?.length ? props.iconName : 'search'
 })
+const userAvatar = userStore?.userModel?.avatar
 
 </script>
 

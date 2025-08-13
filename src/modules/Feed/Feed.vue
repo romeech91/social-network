@@ -7,11 +7,13 @@
     v-if="posts"
     class="feed rounded-container"
   >
-    <feed-item
-      v-for="post in posts"
-      :key="post._id"
-      :post="post"
-    />
+    <scroll-bar :options="{ suppressScrollX: true }">
+      <feed-item
+        v-for="post in posts"
+        :key="post._id"
+        :post="post"
+      />
+    </scroll-bar>
   </div>
 </template>
 
@@ -19,7 +21,7 @@
 //vue
 import { onMounted, computed } from "vue";
 //components
-import TopPanel from "@/components/TopPanel.vue";
+import TopPanel from "@/shared-components/TopPanel.vue";
 import FeedItem from "./components/FeedItem.vue";
 //store
 import { usePostsStore } from "@/stores/posts";
@@ -44,10 +46,8 @@ function createPost() {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: calc(100% - 92px - 83px);
-  overflow: scroll;
-  padding: 20px;
+  height: calc(100vh - 84px - 83px);
+  padding: 20px 10px;
   background-color: #fff;
-  height: 100vh;
 }
 </style>

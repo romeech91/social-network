@@ -14,7 +14,7 @@
 <script lang="ts" setup>
 //components
 import ConversationItem from "./components/ConversationItem.vue";
-import TopPanel from "../../components/TopPanel.vue";
+import TopPanel from "@/shared-components/TopPanel.vue";
 //ts
 import { ConversationModel } from "./types/ConversationModel";
 //vue

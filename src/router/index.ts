@@ -9,6 +9,7 @@ import SettingsPage from "../pages/SettingsPage.vue";
 const routes = [
   {
     path: "/",
+    name: "main",
     component: Posts,
   },
   {

@@ -18,8 +18,11 @@
 </template>
 
 <script setup lang="ts">
+//ts
 import { Post } from './types'
+//vue
 import { computed } from "vue";
+//components
 import Avatar from "@/ui/Avatar.vue";
 import IconSvg from "@/ui/IconSvg.vue";
 

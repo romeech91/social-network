@@ -1,10 +1,8 @@
-export type Author = {
-  _id: string,
-  name: string,
-  avatar?: string
-}
-
-export type Post = Author & {
+export type Post = {
   content: string,
-  author: Author,
+  author: {
+    _id: string,
+    name: string,
+    avatar?: string
+  },
 }

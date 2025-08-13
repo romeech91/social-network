@@ -1,8 +1,8 @@
 <template>
   <div class="info-item">
-    <span class="info-item__label">{{ item.label }}</span>
+    <span class="info-item__label">{{ props.item.label }}</span>
     <div class="info-item__value">
-      {{ item.value }}
+      {{ props.item.value }}
     </div>
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import { InfoItem } from "./types";
 
-defineProps<{
+const props = defineProps<{
   item: InfoItem
 }>()
 </script>

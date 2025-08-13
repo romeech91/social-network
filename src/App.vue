@@ -12,16 +12,18 @@
 <script lang="ts" setup>
 //vue
 import { computed, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 //components
-import NavBar from "./components/NavBar.vue";
-import NotificatiosPopup from "./modules/NotificatiosPopup/index";
+import NavBar from "@/shared-components/NavBar.vue";
+import NotificatiosPopup from "@/modules/NotificatiosPopup/index";
 //store
 import { useUserStore } from "@/stores/user";
 
 const userStore = useUserStore();
+const router = useRouter();
 const route = useRoute();
 const loaded = ref(false);
+
 const showNavBar = computed(() => {
   return route.name !== 'login'
 })
@@ -29,8 +31,17 @@ const showNavBar = computed(() => {
 const uid = localStorage.getItem('uid')
 
 onMounted(async () => {
-  if (!userStore.userModel && uid) {
-    await userStore.getUser(uid);
+  if (!userStore.userModel && uid?.length) {
+    userStore.getUser(uid)
+      .then(() => {
+        if (route.name !== 'main') {
+          router.push({ name: 'main' })
+        }
+      })
+
+      loaded.value = true
+  } else {
+    router.push({ name: 'login' })
     loaded.value = true
   }
 })

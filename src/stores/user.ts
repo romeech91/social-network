@@ -4,7 +4,7 @@ import type { User } from "@/globalTypes";
 
 export const useUserStore = defineStore("users", {
   state: () => ({
-    userModel: null as User,
+    userModel: null as User | null,
   }),
   actions: {
      getUser(uid: string) {

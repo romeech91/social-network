@@ -13,16 +13,12 @@
 <script lang="ts" setup>
 import { defineProps } from "vue";
 
-const props = defineProps({
-  size: {
-    type: String,
-    default: "big",
-  },
-  path: {
-    type: String,
-    default: '',
-  },
-});
+type Props = {
+  size?: 'big' | 'small';
+  path?: string
+}
+
+const props = defineProps<Props>();
 
 const avatarPath = props.path ? `${process.env.VUE_APP_STATIC}/${props.path}` : require('@/assets/avatar-default.svg')
 </script>

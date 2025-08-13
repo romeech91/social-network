@@ -1,11 +1,30 @@
 <template>
-  <div class="rounded-icon">
-    <span v-html="svgIcon"></span>
+  <div
+    class="rounded-icon"
+    @click="$emit('click')"
+  >
+    <span v-html="currentIcon" />
   </div>
 </template>
 
 <script lang="ts" setup>
+//vue
+import { computed } from "vue";
+//icons
+// import { SEARCH_ICON, PENCIL_ICON } from "@/assets/svg-icons";
 
+defineEmits(['click'])
+
+const props = defineProps<{
+  iconName?: string
+}>();
+
+// const ICONS = {
+//   search: SEARCH_ICON,
+//   pencil: PENCIL_ICON,
+// };
+
+const currentIcon = computed(() => props.iconName ? 'pencil' : 'search');
 </script>
 
 <style lang="less" scoped>

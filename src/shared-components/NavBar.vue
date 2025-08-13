@@ -39,7 +39,7 @@ import { home, user, chats } from "@/assets/svg-icons";
   bottom: 0;
   justify-content: space-around;
   background: #fff;
-  border-top: 1px solid #EEFAF8;
+  border-top: 1px solid #80808030;
   padding: 18px;
 
   &-link {
