@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 //ts
-import { Post } from './types'
+import { Post } from '@/globalTypes/post'
 //vue
 import { computed } from "vue";
 //components

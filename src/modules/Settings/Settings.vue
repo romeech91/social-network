@@ -2,6 +2,7 @@
   <div>
     <top-panel
       title="Settings"
+      control-icon="pencil"
       @click="editSettings"
     />
     <div class="settings rounded-container">
@@ -33,7 +34,7 @@ import VueButton from "@/ui/VueButton.vue";
 //store
 import { useUserStore } from "@/stores/user";
 //ts
-import type { User } from "@/globalTypes";
+import type { User } from "@/globalTypes/user";
 
 const router = useRouter();
 

@@ -25,7 +25,7 @@ import { useNotificationsStore } from "@/stores/notifications";
 //components
 import NotificationIcon from "@/ui/NotificationIcon.vue";
 //ts
-import type {Notification} from "@/globalTypes/index";
+import type {Notification} from "@/globalTypes/notification";
 import { cross } from "@/assets/svg-icons";
 
 const props = defineProps<{

@@ -6,12 +6,3 @@ export namespace Notification {
 
   export type Type = 'error' | 'attention' | 'success';
 }
-
-export type User = {
-  id: string,
-  name: string,
-  mail: string,
-  phone: string,
-  linkedUserIds: string[],
-  avatar: string
-}

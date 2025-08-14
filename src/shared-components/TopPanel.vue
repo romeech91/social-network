@@ -20,17 +20,18 @@ import { useUserStore } from "@/stores/user";
 import RoundedIcon from "@/ui/RoundedIcon.vue";
 
 defineEmits(['click'])
+const userStore = useUserStore();
 
 const props = defineProps<{
-  iconName?: string,
+  controlIcon?: string,
   title: string,
   userAvatar?: string
 }>()
 
-const userStore = useUserStore();
+console.log('toppanel', props)
 
 const controlIcon = computed(() => {
-  return props.iconName?.length ? props.iconName : 'search'
+  return props.controlIcon ? props.controlIcon : 'search'
 })
 const userAvatar = userStore?.userModel?.avatar
 

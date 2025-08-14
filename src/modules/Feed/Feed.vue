@@ -1,6 +1,7 @@
 <template>
   <top-panel
     title="News feed"
+    control-icon="pencil"
     @click="createPost"
   />
   <div
