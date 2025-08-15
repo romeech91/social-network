@@ -14,7 +14,6 @@
 
 <script lang="ts" setup>
 import ChatMessage from "./ChatMessage.vue";
-import { defineProps } from "vue";
 
 const props = defineProps({
   messages: {

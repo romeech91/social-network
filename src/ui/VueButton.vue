@@ -16,8 +16,8 @@
 </template>
 
 <script setup lang="ts">
+//ts
 import { computed } from "vue";
-import { defineProps } from "vue";
 import icons from "@/assets/svg-icons";
 
 const props = defineProps<{

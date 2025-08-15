@@ -11,17 +11,23 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from "vue";
+import { computed } from "vue";
+import defaultAvatar from '@/assets/avatar-default.svg';
 
 type Props = {
   size?: 'big' | 'small';
-  path?: string
-}
+  path?: string;
+};
 
 const props = defineProps<Props>();
 
-const avatarPath = props.path ? `${process.env.VUE_APP_STATIC}/${props.path}` : require('@/assets/avatar-default.svg')
+const avatarPath = computed(() =>
+  props.path
+    ? `${import.meta.env.VITE_STATIC}/${props.path}`
+    : defaultAvatar
+);
 </script>
+
 
 <style lang="less" scoped>
 .avatar {

@@ -19,8 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-//vue
-import { defineProps, computed } from "vue";
+import { computed } from "vue";
 import { useNotificationsStore } from "@/stores/notifications";
 //components
 import NotificationIcon from "@/ui/NotificationIcon.vue";

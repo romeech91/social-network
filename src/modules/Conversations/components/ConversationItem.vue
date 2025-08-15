@@ -19,8 +19,6 @@
 <script lang="js" setup>
 //components
 import Avatar from "@/ui/Avatar.vue";
-//ts
-import { defineProps } from "vue";
 
 defineProps({
   item: {
