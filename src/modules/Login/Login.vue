@@ -2,37 +2,42 @@
   <div class="login">
     <login-header />
     <div class="login__fields">
-      <vue-input
-        v-model="login"
-        type="text"
-        flat
-        label="Your email"
-      />
-      <vue-input
-        v-model="password"
-        type="password"
-        flat
-        label="Password"
-      />
+      <FloatLabel>
+        <InputText
+          id="login"
+          v-model="login"
+          class="login__input"
+        />
+        <label for="login">Your login</label>
+      </FloatLabel>
+      <FloatLabel>
+        <Password
+          v-model="password"
+          :feedback="false"
+          class="login__input"
+        />
+        <label for="login">Your password</label>
+      </FloatLabel>
     </div>
-    <vue-button
+    <Button
       :disabled="disabledBtn"
+      label="Log in"
       @click="logIn"
-    >
-      Log in
-    </vue-button>
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 //vue
 import { ref, computed } from "vue";
-import axios from "axios";
+import axiosApi from '@/plugins/axios';
 import { useRouter } from "vue-router";
 //components
 import LoginHeader from "./components/LoginHeader.vue";
-import VueInput from "@/ui/VueInput.vue";
-import VueButton from "@/ui/VueButton.vue";
+import Button from "primevue/button";
+import FloatLabel from "primevue/floatlabel";
+import InputText from "primevue/inputtext";
+import Password from "primevue/password";
 //store
 import { useUserStore } from "@/stores/user";
 //ts
@@ -51,13 +56,9 @@ const disabledBtn = computed(() => {
 });
 
 function logIn() {
-  axios({
-    method: "post",
-    url: "/api/login",
-    data: {
-      login: login.value,
-      password: password.value,
-    },
+  axiosApi.post("/login", {
+    login: login.value,
+    password: password.value,
   })
     .then((response) => {
       localStorage.setItem('token', response.data.token);
@@ -87,6 +88,11 @@ function logIn() {
     display: flex;
     flex-direction: column;
     gap: 30px;
+  }
+
+  &__input,
+  :deep(.p-inputtext) {
+    width: 100%;
   }
 }
 </style>

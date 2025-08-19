@@ -1,8 +1,10 @@
 export namespace Notification {
-  export type Item = {
-    type: string;
-    message: string;
-  };
+  export type Type = 'error' | 'info' | 'success' | 'warn';
 
-  export type Type = 'error' | 'attention' | 'success';
+  export type Item = {
+    type: Type;
+    message: string;
+    title: string;
+    id?: string
+  };
 }

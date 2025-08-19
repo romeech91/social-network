@@ -28,7 +28,6 @@ const props = defineProps<{
   userAvatar?: string
 }>()
 
-console.log('toppanel', props)
 
 const controlIcon = computed(() => {
   return props.controlIcon ? props.controlIcon : 'search'

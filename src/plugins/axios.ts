@@ -20,14 +20,25 @@ apiClient.interceptors.response.use(
     }
 
     const status = error.response ? error.response.status : null;
+
     if (status === 401) {
+      notificationsStore.addItem({
+        type: "error",
+        message: error.response?.data?.message || "Unknown error",
+        title: "Auth error",
+      });
       router.push({ name: 'login' })
     } else if (status === 404) {
-      console.log("404 Not Found");
+      notificationsStore.addItem({
+        type: "error",
+        message: error.response?.data?.message || "Error 404",
+        title: "Resource not found",
+      });
     } else {
       notificationsStore.addItem({
         type: "error",
         message: error.response?.data || "Произошла неизвестная ошибка",
+        title: "Error request",
       });
     }
 
@@ -45,7 +56,7 @@ apiClient.interceptors.request.use((config) => {
 
 export default {
   install: (app: App) => {
-    app.config.globalProperties.$axios = axios.create();
+    app.config.globalProperties.$axios = apiClient;
   },
   get(url: string, params = {}) {
     return apiClient.get(url, params);

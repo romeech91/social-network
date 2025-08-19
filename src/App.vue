@@ -4,7 +4,7 @@
     class="app-main"
   >
     <RouterView />
-    <notificatios-popup />
+    <notifications />
     <nav-bar v-if="showNavBar" />
   </div>
 </template>
@@ -15,7 +15,7 @@ import { computed, onMounted, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 //components
 import NavBar from "@/shared-components/NavBar.vue";
-import NotificatiosPopup from "@/modules/NotificatiosPopup/index";
+import Notifications from "@/modules/Notifications/index";
 //store
 import { useUserStore } from "@/stores/user";
 

@@ -1,9 +1,11 @@
 module.exports = {
+  root: true,
   parser: "vue-eslint-parser",
   parserOptions: {
     parser: "@typescript-eslint/parser",
     ecmaVersion: 2020,
     sourceType: "module",
+    extraFileExtensions: [".vue"],
   },
   extends: [
     "plugin:vue/vue3-recommended",
@@ -16,5 +18,13 @@ module.exports = {
     "@typescript-eslint/no-require-imports": "off",
     "vue/no-v-html": "off",
     "@typescript-eslint/no-namespace": "off",
+  },
+  settings: {
+    "import/resolver": {
+      alias: {
+        map: [["@", "./src"]],
+        extensions: [".ts", ".js", ".vue", ".json"],
+      },
+    },
   },
 };

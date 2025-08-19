@@ -23,7 +23,7 @@ const ICONS = {
   search: SEARCH_ICON,
   pencil: PENCIL_ICON,
 };
-console.log(props.iconName)
+
 const currentIcon = computed(() => ICONS[props.iconName] ? ICONS[props.iconName] : 'search');
 </script>
 
